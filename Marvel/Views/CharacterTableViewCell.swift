@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CharacterTableViewCell: UITableViewCell {
 
@@ -21,8 +22,7 @@ class CharacterTableViewCell: UITableViewCell {
                 characterImageView.image = UIImage(systemName: "person.fill")!
             } else {
                 url.insert("s", at: url.index(url.startIndex, offsetBy: 4))
-                characterImageView.downloaded(from: url)
-//                characterImageView.downloadImage(from: url)
+                characterImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(systemName: "person.fill")!)
             }
             characterNameLabel.text = viewModel.character.name
         }

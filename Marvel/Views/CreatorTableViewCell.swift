@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CreatorTableViewCell: UITableViewCell {
     
@@ -21,7 +22,7 @@ class CreatorTableViewCell: UITableViewCell {
                 creatorImageView.image = UIImage(systemName: "person.fill")!
             } else {
                 url.insert("s", at: url.index(url.startIndex, offsetBy: 4))
-                creatorImageView.downloaded(from: url)
+                creatorImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(systemName: "person.fill")!)
             }
             creatorNameLabel.text = viewModel.creator.fullName
         }

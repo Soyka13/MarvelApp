@@ -8,7 +8,7 @@
 import UIKit
 
 class CreatorsViewController: UIViewController {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -16,7 +16,7 @@ class CreatorsViewController: UIViewController {
     var selectedRowNumber: Int?
     
     public var isLoading = false
-     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -113,7 +113,25 @@ extension CreatorsViewController: UIScrollViewDelegate {
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom < height {
-            guard !isLoading || creatorsViewModel.isAllCreatorsReceived else {
+            if isLoading || creatorsViewModel.isAllCreatorsReceived {
+                return
+            }
+
+            self.tableView.tableFooterView = self.createSpinner()
+
+            loadData(offset: creatorsViewModel.countOfCreators, nameStartsWith: searchBar.text == "" || searchBar.text == nil ? nil : searchBar.text)
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard let creatorsViewModel = creatorsViewModel else {
+            return
+        }
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        
+        if maximumOffset - currentOffset <= 10.0 {
+            guard !isLoading || !creatorsViewModel.isAllCreatorsReceived else {
                 return
             }
             
@@ -121,6 +139,7 @@ extension CreatorsViewController: UIScrollViewDelegate {
             
             loadData(offset: creatorsViewModel.countOfCreators, nameStartsWith: searchBar.text == "" || searchBar.text == nil ? nil : searchBar.text)
         }
+        
     }
 }
 

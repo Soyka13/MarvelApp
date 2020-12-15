@@ -114,7 +114,7 @@ extension CharactersViewController: UIScrollViewDelegate {
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom < height {
-            guard !isLoading || charactersViewModel.isAllCharactersReceived else {
+            if isLoading || charactersViewModel.isAllCharactersReceived {
                 return
             }
             

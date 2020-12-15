@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Lightbox
 
 class ComicsViewController: UIViewController {
-
+  
     @IBOutlet weak var tableView: UITableView!
         
         var comicsViewModel: ComicsViewModel?
@@ -41,6 +42,15 @@ class ComicsViewController: UIViewController {
                 self.isLoading = false
             })
         }
+    
+    private func initializeImageViewer(images: [LightboxImage]) {
+        let imageViewer = LightboxController(images: images)
+        imageViewer.pageDelegate = self
+        imageViewer.dismissalDelegate = self
+        imageViewer.dynamicBackground = true
+
+        present(imageViewer, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Table view data source
@@ -61,6 +71,15 @@ extension ComicsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as! ComicsTableViewCell
+        if cell.comicsImageView.image == UIImage(systemName: "doc.fill") { return }
+        let images = [LightboxImage(image: cell.comicsImageView.image ?? UIImage(systemName: "doc.fill")!, text: cell.comicsTitleLabel.text ?? "")]
+     
+        initializeImageViewer(images: images)
+    }
 }
 
 // MARK: - Scroll View Delegate
@@ -73,13 +92,23 @@ extension ComicsViewController: UIScrollViewDelegate {
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom < height {
-            guard !isLoading || comicsViewModel.isAllComicsReceived else {
+            guard !isLoading || !comicsViewModel.isAllComicsReceived else {
                 return
             }
-            
+
             self.tableView.tableFooterView = self.createSpinner()
-            
+
             loadData(offset: comicsViewModel.countOfComixes)
         }
+    }
+}
+
+extension ComicsViewController: LightboxControllerPageDelegate, LightboxControllerDismissalDelegate {
+    func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
+        
+    }
+    
+    func lightboxControllerWillDismiss(_ controller: LightboxController) {
+        
     }
 }

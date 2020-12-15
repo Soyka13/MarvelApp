@@ -9,4 +9,6 @@ target 'Marvel' do
 
   pod 'Alamofire', '~> 5.2'
   pod 'AlamofireImage', '~> 4.1'
+  pod 'SDWebImage', '~> 5.0'
+  pod 'Lightbox'
 end
