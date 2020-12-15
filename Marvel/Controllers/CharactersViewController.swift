@@ -52,7 +52,7 @@ class CharactersViewController: UIViewController {
 // MARK: - Table View Data Source
 extension CharactersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return charactersViewModel?.countOfCharacter ?? 0
+        return charactersViewModel?.countOfCharacters ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,7 +87,7 @@ extension CharactersViewController: UIScrollViewDelegate {
             
             self.tableView.tableFooterView = self.createSpinner()
             
-            loadData(offset: charactersViewModel.countOfCharacter, nameStartsWith: searchBar.text == "" || searchBar.text == nil ? nil : searchBar.text)
+            loadData(offset: charactersViewModel.countOfCharacters, nameStartsWith: searchBar.text == "" || searchBar.text == nil ? nil : searchBar.text)
         }
     }
 }

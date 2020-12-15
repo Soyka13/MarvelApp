@@ -10,4 +10,6 @@ import Foundation
 struct K {
     static let characterCellIdentifier = "CharacterCell"
     static let characterCellNibName = "CharacterTableViewCell"
+    static let creatorCellIdentifier = "CreatorCell"
+    static let creatorCellNibName = "CreatorTableViewCell"
 }

@@ -13,10 +13,10 @@ struct CreatorsData: Codable {
 
 struct Creators: Codable {
     let total: Int
-    let results: [CreatorResult]
+    let results: [Creator]
 }
 
-struct CreatorResult: Codable {
+struct Creator: Codable {
     let fullName: String
     let thumbnail: Thumbnail
 }

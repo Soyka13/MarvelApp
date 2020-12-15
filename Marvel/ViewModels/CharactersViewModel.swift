@@ -16,7 +16,7 @@ class CharactersViewModel {
         return characters.count == totalCharacters
     }
     
-    public var countOfCharacter: Int {
+    public var countOfCharacters: Int {
         return characters.count
     }
     
