@@ -22,8 +22,11 @@ class CharacterTableViewCell: UITableViewCell {
             } else {
                 url.insert("s", at: url.index(url.startIndex, offsetBy: 4))
                 characterImageView.downloaded(from: url)
+//                characterImageView.downloadImage(from: url)
             }
             characterNameLabel.text = viewModel.character.name
         }
     }
+    
+   
 }

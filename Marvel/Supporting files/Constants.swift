@@ -12,4 +12,11 @@ struct K {
     static let characterCellNibName = "CharacterTableViewCell"
     static let creatorCellIdentifier = "CreatorCell"
     static let creatorCellNibName = "CreatorTableViewCell"
+    static let comicsCellIdentifier = "ComicsCell"
+    static let comicsCellNibName = "ComicsTableViewCell"
+    
+    static let comicsVCNibName = "ComicsViewController"
+    
+    static let charactersComixSegueIdentifier = "CharactersComixSegue"
+    static let creatorsComixSegueIdentifier = "CreatorsComixSegue"
 }

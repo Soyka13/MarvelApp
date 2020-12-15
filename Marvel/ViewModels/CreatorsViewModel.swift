@@ -27,6 +27,19 @@ class CreatorsViewModel {
         return CreatorCellViewModel(creator: creator)
     }
     
+    public func getComicsViewModelForCreator(with indexPathRow: Int) -> ComicsViewModel? {
+        guard indexPathRow < creators.count else {
+            return nil
+        }
+        let comicsViewModel = ComicsViewModel()
+        let creator = creators[indexPathRow]
+        var url = creator.comics.collectionURI
+        url.insert("s", at: url.index(url.startIndex, offsetBy: 4))
+        
+        comicsViewModel.url = url
+        return comicsViewModel
+    }
+    
     public func receiveData(
         _ offset: Int = 0,
         _ limit: Int = 20,

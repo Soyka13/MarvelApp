@@ -19,4 +19,5 @@ struct Creators: Codable {
 struct Creator: Codable {
     let fullName: String
     let thumbnail: Thumbnail
+    let comics: MemberComics
 }

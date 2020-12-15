@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fX5-x4-5Ob">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fX5-x4-5Ob">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Creators-->
+        <!--Creators View Controller-->
         <scene sceneID="xIX-nE-ycJ">
             <objects>
                 <viewController id="zRE-KD-d2K" customClass="CreatorsViewController" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Cih-vM-ab7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eSf-IA-Pul">
-                                <rect key="frame" x="0.0" y="100" width="414" height="713"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -38,17 +38,18 @@
                             <constraint firstItem="eSf-IA-Pul" firstAttribute="trailing" secondItem="C3h-lA-pCh" secondAttribute="trailing" id="zWa-A6-y4c"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Creators" image="person.fill" catalog="system" id="Vqx-RI-ef6"/>
+                    <navigationItem key="navigationItem" id="mGS-i2-QqH"/>
                     <connections>
                         <outlet property="searchBar" destination="Cih-vM-ab7" id="NNe-b5-Cbq"/>
                         <outlet property="tableView" destination="eSf-IA-Pul" id="vxh-5K-eCg"/>
+                        <segue destination="bvc-rK-C81" kind="show" identifier="CreatorsComixSegue" id="oLr-88-WEv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHU-ZL-4Ab" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834.78260869565224" y="392.41071428571428"/>
+            <point key="canvasLocation" x="1744.9275362318842" y="392.41071428571428"/>
         </scene>
-        <!--Characters-->
+        <!--Characters View Controller-->
         <scene sceneID="zdy-kJ-H9A">
             <objects>
                 <viewController id="3ZP-or-EsT" customClass="CharactersViewController" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
@@ -57,11 +58,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EGQ-fW-NwM">
-                                <rect key="frame" x="0.0" y="100" width="414" height="713"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6n6-Xy-Z8R">
-                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -78,15 +79,16 @@
                             <constraint firstItem="EGQ-fW-NwM" firstAttribute="trailing" secondItem="3ac-Rn-VqV" secondAttribute="trailing" id="uxL-GB-bV9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Characters" image="m.circle.fill" catalog="system" id="IDf-xN-085"/>
+                    <navigationItem key="navigationItem" id="rF3-ZY-8wV"/>
                     <connections>
                         <outlet property="searchBar" destination="6n6-Xy-Z8R" id="ifN-Sk-hHo"/>
                         <outlet property="tableView" destination="EGQ-fW-NwM" id="g3P-JR-kNC"/>
+                        <segue destination="bvc-rK-C81" kind="show" identifier="CharactersComixSegue" id="vdm-fR-rAx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTG-pH-2OG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834.78260869565224" y="-273.21428571428572"/>
+            <point key="canvasLocation" x="1744.9275362318842" y="-273.21428571428572"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4ED-VU-pNi">
@@ -98,15 +100,87 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="3ZP-or-EsT" kind="relationship" relationship="viewControllers" id="vto-oW-kbi"/>
-                        <segue destination="zRE-KD-d2K" kind="relationship" relationship="viewControllers" id="FKD-zj-wJO"/>
+                        <segue destination="KUn-xn-xgD" kind="relationship" relationship="viewControllers" id="vto-oW-kbi"/>
+                        <segue destination="Cbn-6c-6Au" kind="relationship" relationship="viewControllers" id="FKD-zj-wJO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GiB-Vs-XfN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-53" y="91"/>
         </scene>
+        <!--Characters-->
+        <scene sceneID="sMF-xs-R6i">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KUn-xn-xgD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Characters" image="m.circle.fill" catalog="system" id="IDf-xN-085"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s7R-iL-7za">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3ZP-or-EsT" kind="relationship" relationship="rootViewController" id="7QH-bZ-zSB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFB-O7-OGB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="834.78260869565224" y="-273.21428571428572"/>
+        </scene>
+        <!--Creators-->
+        <scene sceneID="GKt-Vu-4bf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cbn-6c-6Au" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Creators" image="person.fill" catalog="system" id="Vqx-RI-ef6"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zAJ-TY-j4N">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zRE-KD-d2K" kind="relationship" relationship="rootViewController" id="YO3-EH-scx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BB8-zk-rff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="834.78260869565224" y="392.41071428571428"/>
+        </scene>
+        <!--Comix List-->
+        <scene sceneID="hb9-Hn-je4">
+            <objects>
+                <viewController id="bvc-rK-C81" customClass="ComicsViewController" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oAv-bk-bcr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8s7-Na-BNT">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bhA-dx-eKL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8s7-Na-BNT" firstAttribute="top" secondItem="bhA-dx-eKL" secondAttribute="top" id="WFK-b5-mQm"/>
+                            <constraint firstItem="8s7-Na-BNT" firstAttribute="leading" secondItem="bhA-dx-eKL" secondAttribute="leading" id="WvT-82-Ny6"/>
+                            <constraint firstItem="bhA-dx-eKL" firstAttribute="trailing" secondItem="8s7-Na-BNT" secondAttribute="trailing" id="Y6I-MY-9tK"/>
+                            <constraint firstItem="bhA-dx-eKL" firstAttribute="bottom" secondItem="8s7-Na-BNT" secondAttribute="bottom" id="gee-lJ-VVn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Comix List" id="Xlv-jX-DaR"/>
+                    <connections>
+                        <outlet property="tableView" destination="8s7-Na-BNT" id="sZJ-er-3DC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V1A-NT-IWL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2952" y="83"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="oLr-88-WEv"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="m.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>

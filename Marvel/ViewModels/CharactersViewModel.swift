@@ -10,6 +10,7 @@ import Foundation
 class CharactersViewModel {
     
     public var characters = [Character]()
+    
     public var totalCharacters = 0
     
     public var isAllCharactersReceived: Bool {
@@ -26,6 +27,19 @@ class CharactersViewModel {
         }
         let character = characters[indexPath.row]
         return CharacterCellViewModel(character: character)
+    }
+    
+    public func getComicsViewModelForCharacter(with indexPathRow: Int) -> ComicsViewModel? {
+        guard indexPathRow < characters.count else {
+            return nil
+        }
+        let comicsViewModel = ComicsViewModel()
+        let character = characters[indexPathRow]
+        var url = character.comics.collectionURI
+        url.insert("s", at: url.index(url.startIndex, offsetBy: 4))
+        
+        comicsViewModel.url = url
+        return comicsViewModel
     }
     
     public func receiveData(

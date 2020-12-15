@@ -13,6 +13,7 @@ class CreatorsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var creatorsViewModel: CreatorsViewModel?
+    var selectedRowNumber: Int?
     
     public var isLoading = false
      
@@ -28,6 +29,16 @@ class CreatorsViewController: UIViewController {
         tableView.register(UINib(nibName: K.creatorCellNibName, bundle: nil), forCellReuseIdentifier: K.creatorCellIdentifier)
         
         loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     private func loadData(
@@ -46,6 +57,20 @@ class CreatorsViewController: UIViewController {
             }
             self.isLoading = false
         })
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.creatorsComixSegueIdentifier {
+            let vc = segue.destination as? ComicsViewController
+            guard let selectedRowNumber = selectedRowNumber, let safeVC = vc, let creatorsViewModel = creatorsViewModel else {
+                return
+            }
+            if let comicsViewModel = creatorsViewModel.getComicsViewModelForCreator(with: selectedRowNumber) {
+                safeVC.comicsViewModel = comicsViewModel
+            }
+            
+        }
     }
 }
 
@@ -68,6 +93,13 @@ extension CreatorsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.view.endEditing(true)
+        selectedRowNumber = indexPath.row
+        performSegue(withIdentifier: K.creatorsComixSegueIdentifier, sender: self)
     }
 }
 
@@ -95,6 +127,7 @@ extension CreatorsViewController: UIScrollViewDelegate {
 // MARK: - Search Bar Delegate
 extension CreatorsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         loadData(nameStartsWith: searchBar.text == "" || searchBar.text == nil ? nil : searchBar.text, needToCleanData: true)
     }
     

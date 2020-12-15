@@ -8,6 +8,7 @@
 import Foundation
 
 enum ApiError: Error {
-    case characterError
-    case creatorError
+    case fetchCharacterError
+    case fetchCreatorError
+    case fetchComicsError
 }

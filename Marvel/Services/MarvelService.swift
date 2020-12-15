@@ -45,13 +45,13 @@ class MarvelService {
             case .success(let data):
                 let characters = self.parseCharacter(data: data)
                 guard characters != nil else {
-                    completion((nil, ApiError.characterError))
+                    completion((nil, ApiError.fetchCharacterError))
                     return
                 }
                 completion((characters, nil))
             case .failure(let error):
                 print(error.localizedDescription)
-                completion((nil, ApiError.characterError))
+                completion((nil, ApiError.fetchCharacterError))
             }
         }
     }
@@ -95,13 +95,13 @@ class MarvelService {
             case .success(let data):
                 let creators = self.parseCreators(data: data)
                 guard creators != nil else {
-                    completion((nil, ApiError.creatorError))
+                    completion((nil, ApiError.fetchCreatorError))
                     return
                 }
                 completion((creators, nil))
             case .failure(let error):
                 print(error.localizedDescription)
-                completion((nil, ApiError.creatorError))
+                completion((nil, ApiError.fetchCreatorError))
             }
         }
     }
@@ -111,6 +111,46 @@ class MarvelService {
         
         if let creatorsJSON = try? decoder.decode(CreatorsData.self, from: data) {
             return creatorsJSON.data
+        }
+        
+        return nil
+    }
+    
+    public func fetchComicsData(
+        with url: String,
+        offset: Int = 0,
+        limit: Int = 20,
+        completion: @escaping ((Comixes?, Error?)) -> Void
+    ) {
+        let params : [String: Any] = [
+            "apikey" : Keys.PUBLIC_KEY,
+            "hash" : Keys.HASH,
+            "ts" : 1,
+            "offset" : offset,
+            "limit" : limit
+        ]
+        
+        AF.request(url, method: .get, parameters: params).responseData { (response) in
+            switch response.result {
+            case .success(let data):
+                let comixes = self.parseComics(data: data)
+                guard comixes != nil else {
+                    completion((nil, ApiError.fetchComicsError))
+                    return
+                }
+                completion((comixes, nil))
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion((nil, ApiError.fetchComicsError))
+            }
+        }
+    }
+    
+    private func parseComics(data: Data) -> Comixes? {
+        let decoder = JSONDecoder()
+        
+        if let comixesJSON = try? decoder.decode(ComicsData.self, from: data) {
+            return comixesJSON.data
         }
         
         return nil
