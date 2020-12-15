@@ -116,30 +116,11 @@ extension CreatorsViewController: UIScrollViewDelegate {
             if isLoading || creatorsViewModel.isAllCreatorsReceived {
                 return
             }
-
-            self.tableView.tableFooterView = self.createSpinner()
-
-            loadData(offset: creatorsViewModel.countOfCreators, nameStartsWith: searchBar.text == "" || searchBar.text == nil ? nil : searchBar.text)
-        }
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        guard let creatorsViewModel = creatorsViewModel else {
-            return
-        }
-        let currentOffset = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        
-        if maximumOffset - currentOffset <= 10.0 {
-            guard !isLoading || !creatorsViewModel.isAllCreatorsReceived else {
-                return
-            }
             
             self.tableView.tableFooterView = self.createSpinner()
             
             loadData(offset: creatorsViewModel.countOfCreators, nameStartsWith: searchBar.text == "" || searchBar.text == nil ? nil : searchBar.text)
         }
-        
     }
 }
 

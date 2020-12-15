@@ -47,7 +47,6 @@ class CreatorsViewModel {
         _ needToCleanData: Bool? = nil,
         completion: @escaping (Bool) -> ()
     ) {
-        // bad part - need to fix that
         if let needToCleanData = needToCleanData {
             if needToCleanData {
                 creators.removeAll()
