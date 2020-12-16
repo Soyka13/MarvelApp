@@ -75,7 +75,7 @@ extension ComicsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! ComicsTableViewCell
-        if cell.comicsImageView.image == UIImage(systemName: "doc.fill") { return }
+//        if cell.comicsImageView.image == UIImage(systemName: "doc.fill") { return }
         let images = [LightboxImage(image: cell.comicsImageView.image ?? UIImage(systemName: "doc.fill")!, text: cell.comicsTitleLabel.text ?? "")]
      
         initializeImageViewer(images: images)
@@ -92,7 +92,7 @@ extension ComicsViewController: UIScrollViewDelegate {
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom < height {
-            guard !isLoading || !comicsViewModel.isAllComicsReceived else {
+            if isLoading || comicsViewModel.isAllComicsReceived {
                 return
             }
 

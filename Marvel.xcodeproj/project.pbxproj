@@ -13,7 +13,7 @@
 		922FC4D32588E5E6000A1FB7 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FC4D22588E5E6000A1FB7 /* CharacterTableViewCell.swift */; };
 		922FC4DD2588E861000A1FB7 /* CreatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FC4DB2588E861000A1FB7 /* CreatorTableViewCell.swift */; };
 		922FC4DE2588E861000A1FB7 /* CreatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922FC4DC2588E861000A1FB7 /* CreatorTableViewCell.xib */; };
-		922FC4E22588F338000A1FB7 /* MemberComics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FC4E12588F338000A1FB7 /* MemberComics.swift */; };
+		922FC4E22588F338000A1FB7 /* ComicsMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FC4E12588F338000A1FB7 /* ComicsMember.swift */; };
 		922FC4E52588F440000A1FB7 /* Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FC4E42588F440000A1FB7 /* Comics.swift */; };
 		922FC4EE2588F930000A1FB7 /* ComicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FC4EC2588F930000A1FB7 /* ComicsTableViewCell.swift */; };
 		922FC4EF2588F930000A1FB7 /* ComicsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922FC4ED2588F930000A1FB7 /* ComicsTableViewCell.xib */; };
@@ -48,7 +48,7 @@
 		922FC4D22588E5E6000A1FB7 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
 		922FC4DB2588E861000A1FB7 /* CreatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorTableViewCell.swift; sourceTree = "<group>"; };
 		922FC4DC2588E861000A1FB7 /* CreatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatorTableViewCell.xib; sourceTree = "<group>"; };
-		922FC4E12588F338000A1FB7 /* MemberComics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberComics.swift; sourceTree = "<group>"; };
+		922FC4E12588F338000A1FB7 /* ComicsMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsMember.swift; sourceTree = "<group>"; };
 		922FC4E42588F440000A1FB7 /* Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comics.swift; sourceTree = "<group>"; };
 		922FC4EC2588F930000A1FB7 /* ComicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsTableViewCell.swift; sourceTree = "<group>"; };
 		922FC4ED2588F930000A1FB7 /* ComicsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsTableViewCell.xib; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 				92A93E542587C994001B9C4A /* Characters.swift */,
 				92A93E572587C9B2001B9C4A /* Creators.swift */,
 				922FC4E42588F440000A1FB7 /* Comics.swift */,
-				922FC4E12588F338000A1FB7 /* MemberComics.swift */,
+				922FC4E12588F338000A1FB7 /* ComicsMember.swift */,
 				92A93E5B2587C9C2001B9C4A /* Thumbnail.swift */,
 			);
 			path = Models;
@@ -343,7 +343,7 @@
 				922FC4D32588E5E6000A1FB7 /* CharacterTableViewCell.swift in Sources */,
 				922FC4F92588FD10000A1FB7 /* ComicsViewModel.swift in Sources */,
 				92A93E6C2587CB3F001B9C4A /* CharactersViewModel.swift in Sources */,
-				922FC4E22588F338000A1FB7 /* MemberComics.swift in Sources */,
+				922FC4E22588F338000A1FB7 /* ComicsMember.swift in Sources */,
 				922FC4EE2588F930000A1FB7 /* ComicsTableViewCell.swift in Sources */,
 				92A93E3B2587BB37001B9C4A /* CharactersViewController.swift in Sources */,
 				925D509725891F0900A87F42 /* ComicsViewController.swift in Sources */,

@@ -19,5 +19,5 @@ struct Characters: Codable {
 struct Character: Codable {
     let name: String
     let thumbnail: Thumbnail
-    let comics: MemberComics
+    let comics: ComicsMember
 }

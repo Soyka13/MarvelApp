@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import AlamofireImage
 
 class MarvelService {
     private let urlCharacters = "https://gateway.marvel.com/v1/public/characters?"
