@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 class MarvelService {
-    private let urlCharacters = "https://gateway.marvel.com/v1/public/characters?"
     
+    private let urlCharacters = "https://gateway.marvel.com/v1/public/characters?"
     private let urlCreators = "https://gateway.marvel.com/v1/public/creators?"
     
     public static let manager = MarvelService()
