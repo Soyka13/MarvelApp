@@ -49,7 +49,7 @@ class MarvelService {
     private func parse<ItemType: Codable>(data: Data, itemType: ItemType.Type) -> ItemType? {
         let decoder = JSONDecoder()
         
-        if let json = try? decoder.decode(itemType.self, from: data) {
+        if let json = try? decoder.decode(itemType, from: data) {
             return json
         }
         
