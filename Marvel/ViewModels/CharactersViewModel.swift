@@ -45,7 +45,7 @@ class CharactersViewModel {
     public func receiveData(
         _ offset: Int = 0,
         _ limit: Int = 20,
-        _ nameStartsWith: String? = nil,
+        _ name: String? = nil,
         _ needToCleanData: Bool? = nil,
         completion: @escaping (Bool) -> ()
     ) {
@@ -55,17 +55,23 @@ class CharactersViewModel {
             }
         }
         
-        MarvelService.manager.fetchCharactersData(offset: offset, limit: limit, name: nameStartsWith) { [weak self](charactersData, error) in
-            guard let self = self, error == nil else {
+        MarvelService.manager.fetch(
+            with: K.urlCharacters,
+            offset: offset,
+            limit: limit,
+            name: name,
+            itemType: CharactersData.self
+        ) { [weak self](charactersData, error) in
+            
+            guard let self = self, error == nil, let charactersData = charactersData  else {
+                print(error ?? "")
                 completion(false)
                 return
             }
-    
-            if let total = charactersData?.total, let results = charactersData?.results {
-                self.totalCharacters = total
-                self.characters.append(contentsOf: results)
-                completion(true)
-            }
+            
+            self.totalCharacters = charactersData.data.total
+            self.characters.append(contentsOf: charactersData.data.results)
+            completion(true)
         }
     }
 }

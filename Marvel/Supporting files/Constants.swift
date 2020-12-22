@@ -19,4 +19,7 @@ struct K {
     
     static let charactersComixSegueIdentifier = "CharactersComixSegue"
     static let creatorsComixSegueIdentifier = "CreatorsComixSegue"
+    
+    static let urlCharacters = "https://gateway.marvel.com/v1/public/characters?"
+    static let urlCreators = "https://gateway.marvel.com/v1/public/creators?"
 }

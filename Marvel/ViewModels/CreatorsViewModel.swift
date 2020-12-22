@@ -43,7 +43,7 @@ class CreatorsViewModel {
     public func receiveData(
         _ offset: Int = 0,
         _ limit: Int = 20,
-        _ nameStartsWith: String? = nil,
+        _ name: String? = nil,
         _ needToCleanData: Bool? = nil,
         completion: @escaping (Bool) -> ()
     ) {
@@ -52,18 +52,24 @@ class CreatorsViewModel {
                 creators.removeAll()
             }
         }
-        
-        MarvelService.manager.fetchCreatorsData(offset: offset, limit: limit, name: nameStartsWith) { [weak self](creatorsData, error) in
-            guard let self = self, error == nil else {
+         
+        MarvelService.manager.fetch(
+            with: K.urlCreators,
+            offset: offset,
+            limit: limit,
+            name: name,
+            itemType: CreatorsData.self
+        ) { [weak self](creatorsData, error) in
+            guard let self = self, error == nil, let creatorsData = creatorsData else {
+                print(error ?? "")
                 completion(false)
                 return
             }
-    
-            if let total = creatorsData?.total, let results = creatorsData?.results {
-                self.totalCreators = total
-                self.creators.append(contentsOf: results)
-                completion(true)
-            }
+            
+            self.totalCreators = creatorsData.data.total
+            self.creators.append(contentsOf: creatorsData.data.results)
+            completion(true)
+            
         }
     }
 }

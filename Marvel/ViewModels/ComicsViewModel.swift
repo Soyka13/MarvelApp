@@ -39,18 +39,17 @@ class ComicsViewModel {
                 comixes.removeAll()
             }
         }
-        
-        MarvelService.manager.fetchComicsData(with: url, offset: offset, limit: limit) { [weak self](comicsData, error) in
-            guard let self = self, error == nil else {
+                
+        MarvelService.manager.fetch(with: url, offset: offset, limit: limit, itemType: ComicsData.self) { [weak self](comicsData, error) in
+            guard let self = self, error == nil, let comicsData = comicsData else {
+                print(error ?? "")
                 completion(false)
                 return
             }
-    
-            if let total = comicsData?.total, let results = comicsData?.results {
-                self.totalComixes = total
-                self.comixes.append(contentsOf: results)
-                completion(true)
-            }
+            
+            self.totalComixes = comicsData.data.total
+            self.comixes.append(contentsOf: comicsData.data.results)
+            completion(true)
         }
     }
 }
