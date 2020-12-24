@@ -8,9 +8,9 @@
 import Foundation
 
 class ItemCellViewModel {
-    public var item: Any
+    public var item: Codable
     
-    init(item: Any) {
+    init(item: Codable) {
         self.item = item
     }
 }
