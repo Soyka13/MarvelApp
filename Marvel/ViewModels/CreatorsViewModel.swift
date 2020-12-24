@@ -19,12 +19,12 @@ class CreatorsViewModel {
         return creators.count
     }
     
-    public func modelForCell(with indexPath: IndexPath) -> CreatorCellViewModel? {
+    public func modelForCell(with indexPath: IndexPath) -> ItemCellViewModel? {
         guard indexPath.row < creators.count else {
             return nil
         }
         let creator = creators[indexPath.row]
-        return CreatorCellViewModel(creator: creator)
+        return ItemCellViewModel(item: creator)
     }
     
     public func getComicsViewModelForCreator(with indexPathRow: Int) -> ComicsViewModel? {

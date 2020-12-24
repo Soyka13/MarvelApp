@@ -13,18 +13,18 @@ class CharacterTableViewCell: UITableViewCell {
     @IBOutlet private weak var characterImageView: UIImageView!
     @IBOutlet private weak var characterNameLabel: UILabel!
     
-    weak var viewModel: CharacterCellViewModel? {
+    weak var viewModel: ItemCellViewModel? {
         didSet {
-            guard let viewModel = viewModel else { return }
+            guard let viewModel = viewModel, let character = viewModel.item as? Character else { return }
             
-            var url = viewModel.character.thumbnail.path + "." + viewModel.character.thumbnail.extension
+            var url = character.thumbnail.path + "." + character.thumbnail.extension
             if url.contains("image_not_available") {
                 characterImageView.image = UIImage(systemName: "person.fill")!
             } else {
                 url.insert("s", at: url.index(url.startIndex, offsetBy: 4))
                 characterImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(systemName: "person.fill")!)
             }
-            characterNameLabel.text = viewModel.character.name
+            characterNameLabel.text = character.name
         }
     }
     

@@ -21,12 +21,12 @@ class CharactersViewModel {
         return characters.count
     }
     
-    public func modelForCell(with indexPath: IndexPath) -> CharacterCellViewModel? {
+    public func modelForCell(with indexPath: IndexPath) -> ItemCellViewModel? {
         guard indexPath.row < characters.count else {
             return nil
         }
         let character = characters[indexPath.row]
-        return CharacterCellViewModel(character: character)
+        return ItemCellViewModel(item: character)
     }
     
     public func getComicsViewModelForCharacter(with indexPathRow: Int) -> ComicsViewModel? {

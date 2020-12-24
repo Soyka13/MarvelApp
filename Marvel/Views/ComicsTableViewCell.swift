@@ -13,19 +13,19 @@ class ComicsTableViewCell: UITableViewCell {
     @IBOutlet weak var comicsTitleLabel: UILabel!
     @IBOutlet weak var comicsPriceLabel: UILabel!
     
-    weak var viewModel: ComicsCellViewModel? {
+    weak var viewModel: ItemCellViewModel? {
         didSet {
-            guard let viewModel = viewModel else { return }
+            guard let viewModel = viewModel, let comics = viewModel.item as? Comics else { return }
             
-            var url = viewModel.comics.thumbnail.path + "." + viewModel.comics.thumbnail.extension
+            var url = comics.thumbnail.path + "." + comics.thumbnail.extension
             if url.contains("image_not_available") {
                 comicsImageView.image = UIImage(systemName: "doc.fill")!
             } else {
                 url.insert("s", at: url.index(url.startIndex, offsetBy: 4))
                 comicsImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(systemName: "doc.fill")!)
             }
-            comicsTitleLabel.text = viewModel.comics.title
-            comicsPriceLabel.text = String(viewModel.comics.prices[0].price)
+            comicsTitleLabel.text = comics.title
+            comicsPriceLabel.text = String(comics.prices[0].price)
         }
     }
 }

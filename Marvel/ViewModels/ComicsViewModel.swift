@@ -20,12 +20,12 @@ class ComicsViewModel {
         return comixes.count == totalComixes
     }
     
-    public func modelForCell(with indexPath: IndexPath) -> ComicsCellViewModel? {
+    public func modelForCell(with indexPath: IndexPath) -> ItemCellViewModel? {
         guard indexPath.row < comixes.count else {
             return nil
         }
         let comics = comixes[indexPath.row]
-        return ComicsCellViewModel(comics: comics)
+        return ItemCellViewModel(item: comics)
     }
     
     public func receiveData(
