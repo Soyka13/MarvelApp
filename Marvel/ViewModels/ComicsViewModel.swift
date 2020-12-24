@@ -8,11 +8,12 @@
 import Foundation
 
 class ComicsViewModel {
-    var comixes = [Comics]()
-    var totalComixes = 0
-    var url = ""
     
-    var countOfComixes: Int {
+    private var comixes = [Comics]()
+    private var totalComixes = 0
+    public var url = ""
+    
+    public var countOfComixes: Int {
         return comixes.count
     }
     
@@ -39,17 +40,23 @@ class ComicsViewModel {
                 comixes.removeAll()
             }
         }
-                
-        MarvelService.manager.fetch(with: url, offset: offset, limit: limit, itemType: ComicsData.self) { [weak self](comicsData, error) in
-            guard let self = self, error == nil, let comicsData = comicsData else {
-                print(error ?? "")
-                completion(false)
-                return
-            }
+        
+        MarvelService.manager.fetch(
+            with: url,
+            offset: offset,
+            limit: limit,
+            itemType: ComicsData.self) { result in
             
-            self.totalComixes = comicsData.data.total
-            self.comixes.append(contentsOf: comicsData.data.results)
-            completion(true)
+            switch result {
+            
+            case .success(let comixes):
+                self.totalComixes = comixes.data.total
+                self.comixes.append(contentsOf: comixes.data.results)
+                completion(true)
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(false)
+            }
         }
     }
 }

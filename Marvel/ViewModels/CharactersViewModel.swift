@@ -9,9 +9,8 @@ import Foundation
 
 class CharactersViewModel {
     
-    public var characters = [Character]()
-    
-    public var totalCharacters = 0
+    private var characters = [Character]()
+    private var totalCharacters = 0
     
     public var isAllCharactersReceived: Bool {
         return characters.count == totalCharacters
@@ -60,18 +59,17 @@ class CharactersViewModel {
             offset: offset,
             limit: limit,
             name: name,
-            itemType: CharactersData.self
-        ) { [weak self](charactersData, error) in
+            itemType: CharactersData.self) { result in
             
-            guard let self = self, error == nil, let charactersData = charactersData  else {
-                print(error ?? "")
+            switch result {
+            case .success(let characters):
+                self.totalCharacters = characters.data.total
+                self.characters.append(contentsOf: characters.data.results)
+                completion(true)
+            case .failure(let error):
+                print(error.localizedDescription)
                 completion(false)
-                return
             }
-            
-            self.totalCharacters = charactersData.data.total
-            self.characters.append(contentsOf: charactersData.data.results)
-            completion(true)
         }
     }
 }

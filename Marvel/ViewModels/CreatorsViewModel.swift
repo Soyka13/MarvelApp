@@ -8,8 +8,9 @@
 import Foundation
 
 class CreatorsViewModel {
-    public var creators = [Creator]()
-    public var totalCreators = 0
+    
+    private var creators = [Creator]()
+    private var totalCreators = 0
     
     public var isAllCreatorsReceived: Bool {
         return creators.count == totalCreators
@@ -52,24 +53,24 @@ class CreatorsViewModel {
                 creators.removeAll()
             }
         }
-         
+        
         MarvelService.manager.fetch(
             with: K.urlCreators,
             offset: offset,
             limit: limit,
             name: name,
-            itemType: CreatorsData.self
-        ) { [weak self](creatorsData, error) in
-            guard let self = self, error == nil, let creatorsData = creatorsData else {
-                print(error ?? "")
+            itemType: CreatorsData.self) { result in
+            
+            switch result {
+            
+            case .success(let creators):
+                self.totalCreators = creators.data.total
+                self.creators.append(contentsOf: creators.data.results)
+                completion(true)
+            case .failure(let error):
+                print(error.localizedDescription)
                 completion(false)
-                return
             }
-            
-            self.totalCreators = creatorsData.data.total
-            self.creators.append(contentsOf: creatorsData.data.results)
-            completion(true)
-            
         }
     }
 }

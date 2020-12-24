@@ -18,7 +18,7 @@ class MarvelService {
         limit: Int = 20,
         name: String? = nil,
         itemType: ItemType.Type,
-        completion: @escaping ((ItemType?, Error?)) -> Void
+        completion: @escaping (Result<ItemType, ApiError>) -> Void
     ) {
         var params : [String: Any] = [
             "apikey" : Keys.PUBLIC_KEY,
@@ -32,17 +32,17 @@ class MarvelService {
         }
         
         AF.request(url, method: .get, parameters: params).responseData { (response) in
-            switch response.result {
-            case .success(let data):
-                guard let parsedData = self.parse(data: data, itemType: itemType) else {
-                    completion((nil, ApiError.parsingDataError))
-                    return
-                }
-                completion((parsedData, nil))
-                
-            case .failure(let error):
-                completion((nil, ApiError.fetchDataError(err: error.localizedDescription)))
+            
+            guard response.error == nil else {
+                completion(.failure(.fetchDataError(err: response.error?.localizedDescription ?? "Error fetching data.")))
+                return
             }
+            
+            guard let data = response.data, let parsedData = self.parse(data: data, itemType: itemType) else {
+                completion(.failure(.parsingDataError))
+                return
+            }
+            completion(.success(parsedData))
         }
     }
     
