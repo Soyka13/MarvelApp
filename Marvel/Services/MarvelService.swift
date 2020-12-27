@@ -17,7 +17,6 @@ class MarvelService {
         offset: Int = 0,
         limit: Int = 20,
         name: String? = nil,
-        itemType: ItemType.Type,
         completion: @escaping (Result<ItemType, ApiError>) -> Void
     ) {
         var params : [String: Any] = [
@@ -38,7 +37,7 @@ class MarvelService {
                 return
             }
             
-            guard let data = response.data, let parsedData = self.parse(data: data, itemType: itemType) else {
+            guard let data = response.data, let parsedData: ItemType = self.parse(data: data) else {
                 completion(.failure(.parsingDataError))
                 return
             }
@@ -46,10 +45,10 @@ class MarvelService {
         }
     }
     
-    private func parse<ItemType: Codable>(data: Data, itemType: ItemType.Type) -> ItemType? {
+    private func parse<ItemType: Codable>(data: Data) -> ItemType? {
         let decoder = JSONDecoder()
         
-        if let json = try? decoder.decode(itemType, from: data) {
+        if let json = try? decoder.decode(ItemType.self, from: data) {
             return json
         }
         

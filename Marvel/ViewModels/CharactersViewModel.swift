@@ -58,8 +58,8 @@ class CharactersViewModel {
             with: K.urlCharacters,
             offset: offset,
             limit: limit,
-            name: name,
-            itemType: CharactersData.self) { result in
+            name: name
+        ) { (result: Result<CharactersData, ApiError>) in
             
             switch result {
             case .success(let characters):

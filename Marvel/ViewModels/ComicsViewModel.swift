@@ -44,8 +44,8 @@ class ComicsViewModel {
         MarvelService.manager.fetch(
             with: url,
             offset: offset,
-            limit: limit,
-            itemType: ComicsData.self) { result in
+            limit: limit
+        ) { (result: Result<ComicsData, ApiError>) in
             
             switch result {
             

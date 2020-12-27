@@ -58,8 +58,8 @@ class CreatorsViewModel {
             with: K.urlCreators,
             offset: offset,
             limit: limit,
-            name: name,
-            itemType: CreatorsData.self) { result in
+            name: name
+        ) { (result: Result<CreatorsData, ApiError>) in
             
             switch result {
             
